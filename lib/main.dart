@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:receitas_app/utils/app-routes.dart';
+import 'package:receitas_app/views/categories_meals_view.dart';
 import 'package:receitas_app/views/categories_view.dart';
 
 void main() => runApp(MyApp());
@@ -17,7 +19,10 @@ class MyApp extends StatelessWidget {
               headline6: TextStyle(fontSize: 20, fontFamily: 'RobotoCondensed'),
             ),
       ),
-      home: CategoriesView(),
+      routes: {
+        AppRoutes.HOME: (ctx) => CategoriesView(),
+        AppRoutes.CATEGORIES_MEALS: (ctx) => CategoriesMealsView(),
+      },
     );
   }
 }

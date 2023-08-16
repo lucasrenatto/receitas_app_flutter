@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:receitas_app/utils/app-routes.dart';
 import 'package:receitas_app/views/categories_meals_view.dart';
 
 import '../models/categoryModel.dart';
@@ -6,18 +7,20 @@ import '../models/categoryModel.dart';
 class CategoryItem extends StatelessWidget {
   final Category category;
   const CategoryItem({super.key, required this.category});
-  void _selectCategory(BuildContext context, String nomeCategoria) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-      return CategoriesMealsView(nomeCategoria: nomeCategoria,);
-    }));
-  }
+
+void _selectCategory(BuildContext context, Category category) {
+  Navigator.of(context).pushNamed(
+    AppRoutes.CATEGORIES_MEALS,
+    arguments: {'category': category}, // Passando o argumento como um mapa
+  );
+}
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(15),
       splashColor: Theme.of(context).primaryColor,
-      onTap: () => _selectCategory(context, category.title),
+      onTap: () => _selectCategory(context, category),
       child: Container(
         child: Text(
           category.title,
